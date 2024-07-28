@@ -31,10 +31,10 @@ export class BoardsService {
     return this.boardRepository.createBoard(createBoardDto);
   }
 
-  async getBoardById(id:number): Promise <Board> {
+  async getBoardById(id: number): Promise<Board> {
     const found = await this.boardRepository.findOneById(id);
 
-    if(!found) {
+    if (!found) {
       throw new NotFoundException(`Can't find Board with id ${id}`);
     }
 
@@ -48,6 +48,15 @@ export class BoardsService {
   //   }
   //   return found;
   // }
+
+  async deleteBoard(id: number): Promise<void> {
+    const result = await this.boardRepository.delete(id);
+
+    if(result.affected === 0) {
+      throw new NotFoundException(`Can't find Board with id ${id}`)
+    }
+  }
+
   // deletBoard(id: string): void {
   //   const found = this.getBoardById(id);
   //   this.boards = this.boards.filter((board) => board.id !== found.id);
