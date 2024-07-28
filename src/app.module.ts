@@ -5,10 +5,12 @@ import { Board } from './boards/board.entity';
 import { BoardsService } from './boards/boards.service';
 import { BoardRepository } from './boards/board.repository';
 import { typeORMConfig } from './configs/typeorm.config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeORMConfig),
-    BoardsModule],
+    BoardsModule,
+    AuthModule],
 })
 export class AppModule {}
